@@ -1,0 +1,19 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\2014607_L13_PHAM TAN THINH\KHOA_CUA_SO.uvproj
+Project File Date:  06/10/2022
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling KHOA_CUA_SO.A51...
+linking...
+Program Size: data=8.0 xdata=0 code=8827
+"KHOA_CUA_SO" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=8827
+creating hex file from "KHOA_CUA_SO"...
+"KHOA_CUA_SO" - 0 Error(s), 0 Warning(s).

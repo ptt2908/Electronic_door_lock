@@ -1,0 +1,400 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/10/2022  21:38:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE KHOA_CUA_SO.obj TO KHOA_CUA_SO RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  KHOA_CUA_SO.obj (KHOA_CUA_SO)
+
+
+LINK MAP OF MODULE:  KHOA_CUA_SO (KHOA_CUA_SO)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     227BH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  KHOA_CUA_SO (KHOA_CUA_SO)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        KHOA_CUA_SO
+  C:206AH         SYMBOL        BAN_PHIM
+  C:2030H         SYMBOL        CHECK_ENTER
+  C:2040H         SYMBOL        CHECK_PASSWORD
+  C:20CFH         SYMBOL        CHU_ENTER
+  C:20CCH         SYMBOL        CHU_EXIT
+  C:216CH         SYMBOL        CLEAR
+  C:219CH         SYMBOL        DL1
+  C:21CBH         SYMBOL        DL10S
+  C:21C0H         SYMBOL        DL1S
+  C:21A7H         SYMBOL        DL500MS
+  C:212EH         SYMBOL        DUNG_MAT_KHAU
+  C:20D5H         SYMBOL        ENTER_PASSWORD
+  C:215BH         SYMBOL        INIT_LCD
+  C:21B1H         SYMBOL        LAP1_DL500MS
+  C:21AFH         SYMBOL        LAP2_DL500MS
+  C:21CFH         SYMBOL        LAP_DL10S
+  C:21C4H         SYMBOL        LAP_DL1S
+  N:6000H         SYMBOL        LCDADDR
+  B:00B0H.4       SYMBOL        LCD_E
+  B:00B0H.5       SYMBOL        LCD_RS
+  C:213DH         SYMBOL        LENH_MO_CUA
+  C:20E5H         SYMBOL        LOI_ENTER
+  C:2044H         SYMBOL        LOOP
+  C:201BH         SYMBOL        MAIN
+  C:21F2H         SYMBOL        MAT_KHAU_DUNG
+  C:222EH         SYMBOL        MAT_KHAU_KHOA_CUA_SO
+  C:2213H         SYMBOL        MAT_KHAU_SAI
+  C:2257H         SYMBOL        MA_DUNG_MAT_KHAU
+  C:2232H         SYMBOL        MA_ENTER_PASSWORD
+  C:2270H         SYMBOL        MA_LENH_MO_CUA
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 2
+
+
+  C:2250H         SYMBOL        MA_QUA_KY_TU
+  C:2260H         SYMBOL        MA_SAI_MAT_KHAU
+  C:211FH         SYMBOL        NHAP_LAI
+  D:0090H         SYMBOL        P1
+  D:00B0H         SYMBOL        P3
+  C:2242H         SYMBOL        PLEASE_ENTER
+  C:2110H         SYMBOL        QUA_KY_TU
+  C:2000H         SYMBOL        RESET
+  C:20D7H         SYMBOL        RETURN
+  C:20FDH         SYMBOL        RETURN2
+  C:2112H         SYMBOL        RETURN3
+  C:2121H         SYMBOL        RETURN4
+  C:2130H         SYMBOL        RETURN5
+  C:213FH         SYMBOL        RETURN6
+  C:214EH         SYMBOL        RETURN7
+  C:2066H         SYMBOL        SAI
+  C:214CH         SYMBOL        SAI_MAT_KHAU
+  D:0098H         SYMBOL        SCON
+  C:209AH         SYMBOL        SO_0
+  C:209FH         SYMBOL        SO_1
+  C:20A4H         SYMBOL        SO_2
+  C:20A9H         SYMBOL        SO_3
+  C:20AEH         SYMBOL        SO_4
+  C:20B3H         SYMBOL        SO_5
+  C:20B8H         SYMBOL        SO_6
+  C:20BDH         SYMBOL        SO_7
+  C:20C2H         SYMBOL        SO_8
+  C:20C7H         SYMBOL        SO_9
+  D:008DH         SYMBOL        TH1
+  C:20E4H         SYMBOL        THOAT
+  C:2109H         SYMBOL        THOAT2
+  C:211EH         SYMBOL        THOAT3
+  C:212DH         SYMBOL        THOAT4
+  C:213CH         SYMBOL        THOAT5
+  C:214BH         SYMBOL        THOAT6
+  C:215AH         SYMBOL        THOAT7
+  D:0089H         SYMBOL        TMOD
+  B:0088H.6       SYMBOL        TR1
+  C:2022H         SYMBOL        TT
+  C:2035H         SYMBOL        TT2
+  C:2038H         SYMBOL        TT3
+  C:203BH         SYMBOL        TT4
+  C:21D6H         SYMBOL        VUOT_KY_TU
+  C:2196H         SYMBOL        WAIT_LCD
+  C:217CH         SYMBOL        WRITECOM
+  C:2189H         SYMBOL        WRITETEXT
+  C:2174H         SYMBOL        XUONG_HANG
+  C:2000H         LINE#         5
+  C:2002H         LINE#         6
+  C:2004H         LINE#         7
+  C:2007H         LINE#         8
+  C:200AH         LINE#         9
+  C:200DH         LINE#         10
+  C:200FH         LINE#         11
+  C:2011H         LINE#         12
+  C:2013H         LINE#         13
+  C:2015H         LINE#         14
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 3
+
+
+  C:2017H         LINE#         15
+  C:2019H         LINE#         16
+  C:201BH         LINE#         17
+  C:201CH         LINE#         18
+  C:201DH         LINE#         19
+  C:2020H         LINE#         20
+  C:2022H         LINE#         21
+  C:2023H         LINE#         22
+  C:2024H         LINE#         23
+  C:2025H         LINE#         24
+  C:2027H         LINE#         25
+  C:2029H         LINE#         26
+  C:202BH         LINE#         27
+  C:202EH         LINE#         28
+  C:2030H         LINE#         29
+  C:2033H         LINE#         30
+  C:2035H         LINE#         31
+  C:2038H         LINE#         32
+  C:203BH         LINE#         33
+  C:203EH         LINE#         34
+  C:2040H         LINE#         36
+  C:2042H         LINE#         37
+  C:2044H         LINE#         38
+  C:2045H         LINE#         39
+  C:2048H         LINE#         40
+  C:2049H         LINE#         41
+  C:204AH         LINE#         42
+  C:204BH         LINE#         43
+  C:204CH         LINE#         44
+  C:204FH         LINE#         45
+  C:2051H         LINE#         46
+  C:2054H         LINE#         47
+  C:2056H         LINE#         48
+  C:2059H         LINE#         49
+  C:205BH         LINE#         50
+  C:205EH         LINE#         51
+  C:2060H         LINE#         52
+  C:2063H         LINE#         53
+  C:2066H         LINE#         54
+  C:2069H         LINE#         55
+  C:206AH         LINE#         57
+  C:206DH         LINE#         58
+  C:2070H         LINE#         59
+  C:2073H         LINE#         60
+  C:2076H         LINE#         61
+  C:2079H         LINE#         62
+  C:207CH         LINE#         63
+  C:207FH         LINE#         64
+  C:2082H         LINE#         65
+  C:2085H         LINE#         66
+  C:2088H         LINE#         67
+  C:208BH         LINE#         68
+  C:208EH         LINE#         69
+  C:2091H         LINE#         70
+  C:2094H         LINE#         71
+  C:2097H         LINE#         72
+  C:209AH         LINE#         73
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 4
+
+
+  C:209CH         LINE#         74
+  C:209FH         LINE#         75
+  C:20A1H         LINE#         76
+  C:20A4H         LINE#         77
+  C:20A6H         LINE#         78
+  C:20A9H         LINE#         79
+  C:20ABH         LINE#         80
+  C:20AEH         LINE#         81
+  C:20B0H         LINE#         82
+  C:20B3H         LINE#         83
+  C:20B5H         LINE#         84
+  C:20B8H         LINE#         85
+  C:20BAH         LINE#         86
+  C:20BDH         LINE#         87
+  C:20BFH         LINE#         88
+  C:20C2H         LINE#         89
+  C:20C4H         LINE#         90
+  C:20C7H         LINE#         91
+  C:20C9H         LINE#         92
+  C:20CCH         LINE#         93
+  C:20CFH         LINE#         94
+  C:20D1H         LINE#         95
+  C:20D4H         LINE#         96
+  C:20D5H         LINE#         98
+  C:20D7H         LINE#         99
+  C:20DAH         LINE#         100
+  C:20DBH         LINE#         101
+  C:20DCH         LINE#         102
+  C:20DEH         LINE#         103
+  C:20E0H         LINE#         104
+  C:20E1H         LINE#         105
+  C:20E4H         LINE#         106
+  C:20E5H         LINE#         108
+  C:20E7H         LINE#         109
+  C:20EAH         LINE#         110
+  C:20EDH         LINE#         111
+  C:20EFH         LINE#         112
+  C:20F1H         LINE#         113
+  C:20F4H         LINE#         114
+  C:20F7H         LINE#         115
+  C:20F9H         LINE#         116
+  C:20FBH         LINE#         117
+  C:20FDH         LINE#         118
+  C:2100H         LINE#         119
+  C:2101H         LINE#         120
+  C:2102H         LINE#         121
+  C:2104H         LINE#         122
+  C:2106H         LINE#         123
+  C:2107H         LINE#         124
+  C:2109H         LINE#         125
+  C:210CH         LINE#         126
+  C:210FH         LINE#         127
+  C:2110H         LINE#         129
+  C:2112H         LINE#         130
+  C:2115H         LINE#         131
+  C:2116H         LINE#         132
+  C:2117H         LINE#         133
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 5
+
+
+  C:2119H         LINE#         134
+  C:211BH         LINE#         135
+  C:211CH         LINE#         136
+  C:211EH         LINE#         137
+  C:211FH         LINE#         139
+  C:2121H         LINE#         140
+  C:2124H         LINE#         141
+  C:2125H         LINE#         142
+  C:2126H         LINE#         143
+  C:2128H         LINE#         144
+  C:212AH         LINE#         145
+  C:212BH         LINE#         146
+  C:212DH         LINE#         147
+  C:212EH         LINE#         149
+  C:2130H         LINE#         150
+  C:2133H         LINE#         151
+  C:2134H         LINE#         152
+  C:2135H         LINE#         153
+  C:2137H         LINE#         154
+  C:2139H         LINE#         155
+  C:213AH         LINE#         156
+  C:213CH         LINE#         157
+  C:213DH         LINE#         159
+  C:213FH         LINE#         160
+  C:2142H         LINE#         161
+  C:2143H         LINE#         162
+  C:2144H         LINE#         163
+  C:2146H         LINE#         164
+  C:2148H         LINE#         165
+  C:2149H         LINE#         166
+  C:214BH         LINE#         167
+  C:214CH         LINE#         169
+  C:214EH         LINE#         170
+  C:2151H         LINE#         171
+  C:2152H         LINE#         172
+  C:2153H         LINE#         173
+  C:2155H         LINE#         174
+  C:2157H         LINE#         175
+  C:2158H         LINE#         176
+  C:215AH         LINE#         177
+  C:215BH         LINE#         179
+  C:215DH         LINE#         180
+  C:215FH         LINE#         181
+  C:2161H         LINE#         182
+  C:2163H         LINE#         183
+  C:2165H         LINE#         184
+  C:2167H         LINE#         185
+  C:2169H         LINE#         186
+  C:216BH         LINE#         187
+  C:216CH         LINE#         188
+  C:216FH         LINE#         189
+  C:2171H         LINE#         190
+  C:2173H         LINE#         191
+  C:2174H         LINE#         192
+  C:2177H         LINE#         193
+  C:2179H         LINE#         194
+  C:217BH         LINE#         195
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 6
+
+
+  C:217CH         LINE#         196
+  C:217FH         LINE#         197
+  C:2181H         LINE#         198
+  C:2183H         LINE#         199
+  C:2184H         LINE#         200
+  C:2186H         LINE#         201
+  C:2188H         LINE#         202
+  C:2189H         LINE#         203
+  C:218CH         LINE#         204
+  C:218DH         LINE#         205
+  C:218FH         LINE#         206
+  C:2191H         LINE#         207
+  C:2193H         LINE#         208
+  C:2195H         LINE#         209
+  C:2196H         LINE#         210
+  C:2198H         LINE#         211
+  C:219AH         LINE#         212
+  C:219CH         LINE#         213
+  C:219EH         LINE#         214
+  C:21A0H         LINE#         215
+  C:21A2H         LINE#         216
+  C:21A4H         LINE#         217
+  C:21A6H         LINE#         218
+  C:21A7H         LINE#         220
+  C:21A9H         LINE#         221
+  C:21ABH         LINE#         222
+  C:21ADH         LINE#         223
+  C:21AFH         LINE#         224
+  C:21B1H         LINE#         225
+  C:21B3H         LINE#         226
+  C:21B5H         LINE#         227
+  C:21B7H         LINE#         228
+  C:21B9H         LINE#         229
+  C:21BBH         LINE#         230
+  C:21BDH         LINE#         231
+  C:21BFH         LINE#         232
+  C:21C0H         LINE#         234
+  C:21C2H         LINE#         235
+  C:21C4H         LINE#         236
+  C:21C6H         LINE#         237
+  C:21C8H         LINE#         238
+  C:21CAH         LINE#         239
+  C:21CBH         LINE#         240
+  C:21CDH         LINE#         241
+  C:21CFH         LINE#         242
+  C:21D1H         LINE#         243
+  C:21D3H         LINE#         244
+  C:21D5H         LINE#         245
+  C:21D6H         LINE#         247
+  C:21D9H         LINE#         248
+  C:21DCH         LINE#         249
+  C:21DEH         LINE#         250
+  C:21E0H         LINE#         251
+  C:21E2H         LINE#         252
+  C:21E5H         LINE#         253
+  C:21E7H         LINE#         254
+  C:21E9H         LINE#         255
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2022  21:38:57  PAGE 7
+
+
+  C:21EBH         LINE#         256
+  C:21EEH         LINE#         257
+  C:21F1H         LINE#         258
+  C:21F2H         LINE#         260
+  C:21F5H         LINE#         261
+  C:21F8H         LINE#         262
+  C:21FAH         LINE#         263
+  C:21FCH         LINE#         264
+  C:21FEH         LINE#         265
+  C:2201H         LINE#         266
+  C:2203H         LINE#         267
+  C:2205H         LINE#         268
+  C:2207H         LINE#         269
+  C:220AH         LINE#         270
+  C:220CH         LINE#         271
+  C:220FH         LINE#         272
+  C:2212H         LINE#         273
+  C:2213H         LINE#         275
+  C:2216H         LINE#         276
+  C:2219H         LINE#         277
+  C:221BH         LINE#         278
+  C:221DH         LINE#         279
+  C:221FH         LINE#         280
+  C:2222H         LINE#         281
+  C:2225H         LINE#         282
+  C:2227H         LINE#         283
+  C:222AH         LINE#         284
+  C:222DH         LINE#         285
+  -------         ENDMOD        KHOA_CUA_SO
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 027BH BYTE (31%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=8827
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

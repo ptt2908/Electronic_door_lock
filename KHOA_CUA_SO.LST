@@ -1,0 +1,419 @@
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN KHOA_CUA_SO.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE KHOA_CUA_SO.A51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+  00B4                 1     LCD_E  BIT P3.4
+  00B5                 2     LCD_RS BIT P3.5
+  6000                 3     LCDADDR EQU 6000H
+2000                   4     ORG 2000H
+2000 D2B2              5     RESET:          SETB P3.2                         ;TAT DONG CO, CLOSE DOOR
+2002 D2B3              6                     SETB P3.3                         ;TAT COI BUZZER
+2004 759850            7                     MOV SCON,#50H         ;che do UART 8 bit (MODE 2)
+2007 758920            8                     MOV TMOD,#20H             ;timer 1 mode 2 8 bit tu dong nap lai
+200A 758DFD            9                     MOV TH1,#(-3)             ;TOC DO BAUND = 9600
+200D D28E             10                     SETB TR1                          ;chay timer 1
+200F 7D00             11                     MOV R5,#0                     ;DEM SO KY TU MAT KHAU
+2011 7930             12                                     MOV R1,#30H                   ;ADDR SAVE MAT KHAU NHAP TU B
+                             AN PHIM 
+2013 315B             13                                     ACALL INIT_LCD            ;KHOI DONG LCD
+2015 11D5             14                             ACALL ENTER_PASSWORD  ;MOI NHAP MAT KHAU
+2017 3174             15                     ACALL XUONG_HANG
+2019 116A             16                     ACALL BAN_PHIM            ;GIAO TIEP BAN PHIM
+201B EA               17     MAIN:           MOV A,R2
+201C 0D               18                             INC R5
+201D B40D02           19                     CJNE A,#13,TT
+2020 800E             20                             SJMP CHECK_ENTER
+2022 F7               21     TT:                     MOV @R1,A                        ;LUU MAT KHAU NHAP TU BAN PHIM
+2023 09               22                     INC R1
+2024 EA               23                             MOV A,R2
+2025 2430             24                             ADD A,#48                        ;MA ASCII SO 0
+2027 3189             25                             ACALL WRITETEXT
+2029 31A7             26                             ACALL DL500MS
+202B BD053C           27                         CJNE R5,#5,BAN_PHIM
+202E 8005             28                                     SJMP TT2
+2030 BD0508           29     CHECK_ENTER:    CJNE R5,#5,TT4
+2033 8003             30                     SJMP TT3
+2035 1221D6           31     TT2:            LCALL VUOT_KY_TU
+2038 122040           32     TT3:            LCALL CHECK_PASSWORD
+203B 1220E5           33     TT4:            LCALL LOI_ENTER
+203E 80FE             34                             SJMP $
+                      35     ;----------------------------------------------;
+2040 7E00             36     CHECK_PASSWORD: MOV R6,#0
+2042 7820             37                     MOV R0,#20H
+2044 EE               38     LOOP:                   MOV A,R6
+2045 90222E           39                                     MOV DPTR,#MAT_KHAU_KHOA_CUA_SO
+2048 93               40                                     MOVC A,@A+DPTR
+2049 F6               41                                     MOV @R0,A
+204A 08               42                                 INC R0
+204B 0E               43                                     INC R6
+204C BE04F5           44                                     CJNE R6,#4,LOOP
+204F E520             45                                     MOV A,20H
+2051 B53012           46                                     CJNE A,30H,SAI
+2054 E521             47                                     MOV A,21H
+2056 B5310D           48                                     CJNE A,31H,SAI
+2059 E522             49                                     MOV A,22H
+205B B53208           50                                     CJNE A,32H,SAI
+205E E523             51                                     MOV A,23H
+2060 B53303           52                                     CJNE A,33H,SAI
+2063 1221F2           53                                     LCALL MAT_KHAU_DUNG
+2066 122213           54     SAI:                    LCALL MAT_KHAU_SAI
+2069 22               55                     RET
+                      56     ;-----------------------------------------------;
+206A 75906F           57     BAN_PHIM: MOV P1,#01101111B
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     2
+
+206D 30904D           58               JNB P1.0,SO_7
+2070 30913B           59                   JNB P1.1,SO_4
+2073 309229           60                   JNB P1.2,SO_1
+2076 309353           61                   JNB P1.3,CHU_EXIT
+2079 75905F           62                   MOV P1,#01011111B
+207C 309043           63               JNB P1.0,SO_8
+207F 309131           64                   JNB P1.1,SO_5
+2082 30921F           65                   JNB P1.2,SO_2
+2085 309312           66                   JNB P1.3,SO_0
+2088 75903F           67                   MOV P1,#00111111B
+208B 309039           68               JNB P1.0,SO_9
+208E 309127           69                   JNB P1.1,SO_6
+2091 309215           70                   JNB P1.2,SO_3
+2094 309338           71                   JNB P1.3,CHU_ENTER
+2097 02206A           72                   LJMP BAN_PHIM
+209A 7A00             73     SO_0:   MOV R2,#0
+209C 02201B           74             LJMP MAIN
+209F 7A01             75     SO_1:   MOV R2,#1
+20A1 02201B           76             LJMP MAIN
+20A4 7A02             77     SO_2:   MOV R2,#2
+20A6 02201B           78             LJMP MAIN
+20A9 7A03             79     SO_3:   MOV R2,#3
+20AB 02201B           80             LJMP MAIN
+20AE 7A04             81     SO_4:   MOV R2,#4
+20B0 02201B           82             LJMP MAIN
+20B3 7A05             83     SO_5:   MOV R2,#5
+20B5 02201B           84             LJMP MAIN
+20B8 7A06             85     SO_6:   MOV R2,#6
+20BA 02201B           86             LJMP MAIN
+20BD 7A07             87     SO_7:   MOV R2,#7
+20BF 02201B           88             LJMP MAIN
+20C2 7A08             89     SO_8:   MOV R2,#8
+20C4 02201B           90             LJMP MAIN
+20C7 7A09             91     SO_9:   MOV R2,#9
+20C9 02201B           92             LJMP MAIN
+20CC 022000           93     CHU_EXIT:  LJMP RESET
+20CF 7A0D             94     CHU_ENTER: MOV R2,#13
+20D1 02201B           95                LJMP MAIN
+20D4 22               96                RET
+                      97     ;-----------------------------------;
+20D5 7B00             98     ENTER_PASSWORD:   MOV R3,#0
+20D7 902232           99     RETURN:           MOV DPTR,#MA_ENTER_PASSWORD
+20DA EB              100                                   MOV A,R3
+20DB 93              101                                   MOVC A,@A+DPTR
+20DC 3189            102                                   ACALL WRITETEXT
+20DE 6004            103                                   JZ THOAT
+20E0 0B              104                                   INC R3
+20E1 0220D7          105                                   LJMP RETURN
+20E4 22              106     THOAT:                RET
+                     107     ;------------------------------------;
+20E5 D003            108     LOI_ENTER:        POP 03H
+20E7 12216C          109                       LCALL CLEAR
+20EA 906000          110                                       MOV DPTR,#LCDADDR
+20ED 7485            111                                       MOV A,#085H
+20EF 317C            112                                       ACALL WRITECOM
+20F1 122110          113                                       LCALL QUA_KY_TU
+20F4 906000          114                       MOV DPTR,#LCDADDR
+20F7 74C2            115                                       MOV A,#0C2H
+20F9 317C            116                                       ACALL WRITECOM
+20FB 7B00            117                       MOV R3,#0
+20FD 902242          118     RETURN2:          MOV DPTR,#PLEASE_ENTER
+2100 EB              119                                   MOV A,R3
+2101 93              120                                   MOVC A,@A+DPTR
+2102 3189            121                                   ACALL WRITETEXT
+2104 6003            122                                   JZ THOAT2
+2106 0B              123                                   INC R3
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     3
+
+2107 80F4            124                                   SJMP RETURN2
+2109 1221C0          125     THOAT2:               LCALL DL1S
+210C 022000          126                       LJMP RESET
+210F 22              127                       RET
+                     128     ;----------------------------------------------;
+2110 7B00            129     QUA_KY_TU:        MOV R3,#0
+2112 902250          130     RETURN3:          MOV DPTR,#MA_QUA_KY_TU
+2115 EB              131                                   MOV A,R3
+2116 93              132                                   MOVC A,@A+DPTR
+2117 3189            133                                   ACALL WRITETEXT
+2119 6003            134                                   JZ THOAT3
+211B 0B              135                                   INC R3
+211C 80F4            136                                   SJMP RETURN3
+211E 22              137     THOAT3:               RET
+                     138     ;-----------------------------------------------------;
+211F 7B00            139     NHAP_LAI:             MOV R3,#0
+2121 902242          140     RETURN4:          MOV DPTR,#PLEASE_ENTER
+2124 EB              141                                   MOV A,R3
+2125 93              142                                   MOVC A,@A+DPTR
+2126 3189            143                                   ACALL WRITETEXT
+2128 6003            144                                   JZ THOAT4
+212A 0B              145                                   INC R3
+212B 80F4            146                                   SJMP RETURN4
+212D 22              147     THOAT4:               RET
+                     148     ;--------------------------------------------------;
+212E 7B00            149     DUNG_MAT_KHAU:    MOV R3,#0
+2130 902257          150     RETURN5:          MOV DPTR,#MA_DUNG_MAT_KHAU
+2133 EB              151                                   MOV A,R3
+2134 93              152                                   MOVC A,@A+DPTR
+2135 3189            153                                   ACALL WRITETEXT
+2137 6003            154                                   JZ THOAT5
+2139 0B              155                                   INC R3
+213A 80F4            156                                   SJMP RETURN5
+213C 22              157     THOAT5:               RET
+                     158     ;--------------------------------------------------;
+213D 7B00            159     LENH_MO_CUA:      MOV R3,#0
+213F 902270          160     RETURN6:          MOV DPTR,#MA_LENH_MO_CUA
+2142 EB              161                                   MOV A,R3
+2143 93              162                                   MOVC A,@A+DPTR
+2144 3189            163                                   ACALL WRITETEXT
+2146 6003            164                                   JZ THOAT6
+2148 0B              165                                   INC R3
+2149 80F4            166                                   SJMP RETURN6
+214B 22              167     THOAT6:               RET
+                     168     ;--------------------------------------------------;
+214C 7B00            169     SAI_MAT_KHAU:     MOV R3,#0
+214E 902260          170     RETURN7:          MOV DPTR,#MA_SAI_MAT_KHAU
+2151 EB              171                                   MOV A,R3
+2152 93              172                                   MOVC A,@A+DPTR
+2153 3189            173                                   ACALL WRITETEXT
+2155 6003            174                                   JZ THOAT7
+2157 0B              175                                   INC R3
+2158 80F4            176                                   SJMP RETURN7
+215A 22              177     THOAT7:               RET
+                     178     ;--------------------------------------------------;
+215B 7401            179     INIT_LCD: MOV A,#01H
+215D 317C            180               ACALL WRITECOM
+215F 7438            181               MOV A, #38H
+2161 317C            182               ACALL WRITECOM
+2163 740E            183               MOV A, #0EH
+2165 317C            184               ACALL WRITECOM 
+2167 7406            185               MOV A, #06H
+2169 317C            186               ACALL WRITECOM
+216B 22              187               RET
+216C 906000          188     CLEAR:    MOV DPTR,#LCDADDR
+216F 7401            189               MOV A, #01H
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     4
+
+2171 317C            190               ACALL WRITECOM
+2173 22              191               RET
+2174 906000          192     XUONG_HANG: MOV DPTR,#LCDADDR
+2177 74C5            193                 MOV A,#0C5H
+2179 317C            194                             ACALL WRITECOM
+217B 22              195                             RET
+217C 906000          196     WRITECOM:   MOV DPTR, #LCDADDR 
+217F D2B4            197                 SETB LCD_E
+2181 C2B5            198                 CLR LCD_RS                          ;truy xuat lenh
+2183 F0              199                 MOVX @DPTR, A
+2184 C2B4            200                 CLR LCD_E
+2186 3196            201                 ACALL WAIT_LCD
+2188 22              202                 RET
+2189 906000          203     WRITETEXT:  MOV DPTR,#LCDADDR
+218C F0              204                 MOVX @DPTR,A
+218D D2B4            205                 SETB LCD_E
+218F D2B5            206                 SETB LCD_RS                          ;truy xuat data
+2191 C2B4            207                 CLR LCD_E
+2193 3196            208                 ACALL WAIT_LCD
+2195 22              209                 RET
+2196 C007            210     WAIT_LCD:   PUSH 07H
+2198 C006            211                 PUSH 06H
+219A 7E0A            212                             MOV R6,#10 
+219C 7FFA            213     DL1:        MOV R7,#250
+219E DFFE            214                 DJNZ R7, $
+21A0 DEFA            215                         DJNZ R6,DL1
+21A2 D006            216                             POP 06H
+21A4 D007            217                             POP 07H
+21A6 22              218                         RET
+                     219     ;---------------------------------------;
+21A7 C007            220     DL500MS:      PUSH 07H
+21A9 C006            221                   PUSH 06H
+21AB C005            222                               PUSH 05H
+21AD 7F05            223                               MOV R7,#5
+21AF 7EFA            224     LAP2_DL500MS: MOV R6,#250
+21B1 7DFA            225     LAP1_DL500MS: MOV R5,#250
+21B3 DDFE            226                               DJNZ R5,$
+21B5 DEFA            227                               DJNZ R6,LAP1_DL500MS
+21B7 DFF6            228                               DJNZ R7,LAP2_DL500MS
+21B9 D005            229                               POP 05H
+21BB D006            230                               POP 06H
+21BD D007            231                               POP 07H
+21BF 22              232                               RET
+                     233     ;------------------------------------;
+21C0 C004            234     DL1S:             PUSH 04H
+21C2 7C02            235                       MOV R4,#2
+21C4 31A7            236     LAP_DL1S:                 ACALL DL500MS
+21C6 DCFC            237                                       DJNZ R4,LAP_DL1S
+21C8 D004            238                                       POP 04H
+21CA 22              239                                       RET
+21CB C004            240     DL10S:            PUSH 04H
+21CD 7C0A            241                       MOV R4,#10
+21CF 31C0            242     LAP_DL10S:                ACALL DL1S
+21D1 DCFC            243                                       DJNZ R4,LAP_DL10S
+21D3 D004            244                                       POP 04H
+21D5 22              245                                       RET
+                     246     ;--------------------------------------;
+21D6 12216C          247     VUOT_KY_TU:       LCALL CLEAR
+21D9 906000          248                       MOV DPTR,#LCDADDR
+21DC 7484            249                       MOV A,#84H
+21DE 317C            250                                   ACALL WRITECOM
+21E0 3110            251                                       ACALL QUA_KY_TU
+21E2 906000          252                                       MOV DPTR,#LCDADDR
+21E5 74C1            253                       MOV A,#0C1H
+21E7 317C            254                                   ACALL WRITECOM
+21E9 311F            255                                       ACALL NHAP_LAI
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     5
+
+21EB 1221C0          256                                       LCALL DL1S
+21EE 022000          257                                       LJMP RESET
+21F1 22              258                                       RET
+                     259     ;-------------------------------------;
+21F2 12216C          260     MAT_KHAU_DUNG:   LCALL CLEAR
+21F5 906000          261                      MOV DPTR,#LCDADDR
+21F8 7484            262                                      MOV A,#84H
+21FA 317C            263                                      ACALL WRITECOM
+21FC 312E            264                                      ACALL DUNG_MAT_KHAU
+21FE 906000          265                                      MOV DPTR,#LCDADDR
+2201 74C3            266                                      MOV A,#0C3H
+2203 317C            267                                      ACALL WRITECOM
+2205 313D            268                                      ACALL LENH_MO_CUA
+2207 1221C0          269                                      LCALL DL1S
+220A C2B2            270                                      CLR P3.2                 ;dong co xoay
+220C 1221CB          271                                      LCALL DL10S
+220F 022000          272                                      LJMP RESET
+2212 22              273                                      RET
+                     274     ;-------------------------------------;
+2213 12216C          275     MAT_KHAU_SAI:    LCALL CLEAR
+2216 906000          276                      MOV DPTR,#LCDADDR
+2219 7480            277                                      MOV A,#80H
+221B 317C            278                                      ACALL WRITECOM
+221D 314C            279                                      ACALL SAI_MAT_KHAU
+221F 906000          280                                      MOV DPTR,#LCDADDR
+2222 1221A7          281                      LCALL DL500MS
+2225 C2B3            282                                      CLR P3.3                          ;coi buzzer kêu
+2227 1221CB          283                                      LCALL DL10S
+222A 022000          284                                      LJMP RESET
+222D 22              285                                      RET
+                     286     ;---------------------------------------;                 
+222E 08000501        287     MAT_KHAU_KHOA_CUA_SO: DB  8,0,5,1                 
+2232 454E5445        288     MA_ENTER_PASSWORD:    DB 'ENTER PASSWORD:',0H
+2236 52205041                
+223A 5353574F                
+223E 52443A00                
+2242 504C4541        289     PLEASE_ENTER:         DB 'PLEASE ENTER!',0H
+2246 53452045                
+224A 4E544552                
+224E 2100                    
+2250 4552524F        290     MA_QUA_KY_TU:         DB 'ERROR!',0H
+2254 522100                  
+2257 434F5252        291     MA_DUNG_MAT_KHAU:         DB 'CORRECT!',0H
+225B 45435421                
+225F 00                      
+2260 57524F4E        292     MA_SAI_MAT_KHAU:          DB 'WRONG PASSWORD!',0H
+2264 47205041                
+2268 5353574F                
+226C 52442100                
+2270 4F50454E        293     MA_LENH_MO_CUA:       DB 'OPEN DOOR!',0H
+2274 20444F4F                
+2278 522100                  
+                     294     END
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     6
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E               T Y P E  V A L U E   ATTRIBUTES
+
+BAN_PHIM . . . . . .  C ADDR   206AH   A   
+CHECK_ENTER. . . . .  C ADDR   2030H   A   
+CHECK_PASSWORD . . .  C ADDR   2040H   A   
+CHU_ENTER. . . . . .  C ADDR   20CFH   A   
+CHU_EXIT . . . . . .  C ADDR   20CCH   A   
+CLEAR. . . . . . . .  C ADDR   216CH   A   
+DL1. . . . . . . . .  C ADDR   219CH   A   
+DL10S. . . . . . . .  C ADDR   21CBH   A   
+DL1S . . . . . . . .  C ADDR   21C0H   A   
+DL500MS. . . . . . .  C ADDR   21A7H   A   
+DUNG_MAT_KHAU. . . .  C ADDR   212EH   A   
+ENTER_PASSWORD . . .  C ADDR   20D5H   A   
+INIT_LCD . . . . . .  C ADDR   215BH   A   
+LAP1_DL500MS . . . .  C ADDR   21B1H   A   
+LAP2_DL500MS . . . .  C ADDR   21AFH   A   
+LAP_DL10S. . . . . .  C ADDR   21CFH   A   
+LAP_DL1S . . . . . .  C ADDR   21C4H   A   
+LCDADDR. . . . . . .  N NUMB   6000H   A   
+LCD_E. . . . . . . .  B ADDR   00B0H.4 A   
+LCD_RS . . . . . . .  B ADDR   00B0H.5 A   
+LENH_MO_CUA. . . . .  C ADDR   213DH   A   
+LOI_ENTER. . . . . .  C ADDR   20E5H   A   
+LOOP . . . . . . . .  C ADDR   2044H   A   
+MAIN . . . . . . . .  C ADDR   201BH   A   
+MAT_KHAU_DUNG. . . .  C ADDR   21F2H   A   
+MAT_KHAU_KHOA_CUA_SO  C ADDR   222EH   A   
+MAT_KHAU_SAI . . . .  C ADDR   2213H   A   
+MA_DUNG_MAT_KHAU . .  C ADDR   2257H   A   
+MA_ENTER_PASSWORD. .  C ADDR   2232H   A   
+MA_LENH_MO_CUA . . .  C ADDR   2270H   A   
+MA_QUA_KY_TU . . . .  C ADDR   2250H   A   
+MA_SAI_MAT_KHAU. . .  C ADDR   2260H   A   
+NHAP_LAI . . . . . .  C ADDR   211FH   A   
+P1 . . . . . . . . .  D ADDR   0090H   A   
+P3 . . . . . . . . .  D ADDR   00B0H   A   
+PLEASE_ENTER . . . .  C ADDR   2242H   A   
+QUA_KY_TU. . . . . .  C ADDR   2110H   A   
+RESET. . . . . . . .  C ADDR   2000H   A   
+RETURN . . . . . . .  C ADDR   20D7H   A   
+RETURN2. . . . . . .  C ADDR   20FDH   A   
+RETURN3. . . . . . .  C ADDR   2112H   A   
+RETURN4. . . . . . .  C ADDR   2121H   A   
+RETURN5. . . . . . .  C ADDR   2130H   A   
+RETURN6. . . . . . .  C ADDR   213FH   A   
+RETURN7. . . . . . .  C ADDR   214EH   A   
+SAI. . . . . . . . .  C ADDR   2066H   A   
+SAI_MAT_KHAU . . . .  C ADDR   214CH   A   
+SCON . . . . . . . .  D ADDR   0098H   A   
+SO_0 . . . . . . . .  C ADDR   209AH   A   
+SO_1 . . . . . . . .  C ADDR   209FH   A   
+SO_2 . . . . . . . .  C ADDR   20A4H   A   
+SO_3 . . . . . . . .  C ADDR   20A9H   A   
+SO_4 . . . . . . . .  C ADDR   20AEH   A   
+SO_5 . . . . . . . .  C ADDR   20B3H   A   
+SO_6 . . . . . . . .  C ADDR   20B8H   A   
+SO_7 . . . . . . . .  C ADDR   20BDH   A   
+SO_8 . . . . . . . .  C ADDR   20C2H   A   
+SO_9 . . . . . . . .  C ADDR   20C7H   A   
+TH1. . . . . . . . .  D ADDR   008DH   A   
+THOAT. . . . . . . .  C ADDR   20E4H   A   
+A51 MACRO ASSEMBLER  KHOA_CUA_SO                                                          06/10/2022 21:38:35 PAGE     7
+
+THOAT2 . . . . . . .  C ADDR   2109H   A   
+THOAT3 . . . . . . .  C ADDR   211EH   A   
+THOAT4 . . . . . . .  C ADDR   212DH   A   
+THOAT5 . . . . . . .  C ADDR   213CH   A   
+THOAT6 . . . . . . .  C ADDR   214BH   A   
+THOAT7 . . . . . . .  C ADDR   215AH   A   
+TMOD . . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . . .  B ADDR   0088H.6 A   
+TT . . . . . . . . .  C ADDR   2022H   A   
+TT2. . . . . . . . .  C ADDR   2035H   A   
+TT3. . . . . . . . .  C ADDR   2038H   A   
+TT4. . . . . . . . .  C ADDR   203BH   A   
+VUOT_KY_TU . . . . .  C ADDR   21D6H   A   
+WAIT_LCD . . . . . .  C ADDR   2196H   A   
+WRITECOM . . . . . .  C ADDR   217CH   A   
+WRITETEXT. . . . . .  C ADDR   2189H   A   
+XUONG_HANG . . . . .  C ADDR   2174H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
