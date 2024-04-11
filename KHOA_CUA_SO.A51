@@ -13,7 +13,7 @@ RESET:          SETB P3.2			  ;TAT DONG CO, CLOSE DOOR
 		ACALL INIT_LCD		  	  ;KHOI DONG LCD
 		ACALL ENTER_PASSWORD  		  ;MOI NHAP MAT KHAU
                 ACALL XUONG_HANG                  ;XUONG HANG LCD
-                ACALL BAN_PHIM		  	  ;GIAO TIEP BAN PHIM
+                ACALL BAN_PHIM		  	  ;GIAO TIEP BAN PHIM, DUOC LƯU VÀO R2
 MAIN:	        MOV A,R2
 		INC R5
                 CJNE A,#13,TT
