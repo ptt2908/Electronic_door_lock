@@ -16,7 +16,7 @@ RESET:          SETB P3.2			  ;TAT DONG CO, CLOSE DOOR
                 ACALL BAN_PHIM		  	  ;GIAO TIEP BAN PHIM, DUOC LƯU VÀO R2
 MAIN:	        MOV A,R2
 		INC R5
-                CJNE A,#13,TT
+                CJNE A,#13,TT                     ; #13 LÀ NHẬP ENTER
 		SJMP CHECK_ENTER
 TT:		MOV @R1,A			 ;LUU MAT KHAU NHAP TU BAN PHIM
                 INC R1
